@@ -43,6 +43,7 @@ export const MotionWrapper = ({
             whileInView={!immediate ? "visible" : undefined}
             animate={immediate ? "visible" : undefined}
             viewport={!immediate ? { once, amount: 0.1 } : undefined}
+            style={{ willChange: "transform, opacity" }}
             variants={{
                 hidden: variant.hidden,
                 visible: {

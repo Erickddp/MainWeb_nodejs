@@ -73,13 +73,23 @@
 
   body {
     @apply bg-background text-foreground;
-    background-color: hsl(var(--background)); /* Explicit fallback */
+    background-color: hsl(var(--background));
+    /* Explicit fallback */
   }
 }
 
 /* Custom Utilities */
+/* Custom Utilities - Tiered Performance */
 .glass {
-  @apply bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10;
+  /* Mobile: simplified compositing (no blur, slightly more opaque) */
+  @apply bg-background/80 border border-white/20 dark:border-white/10;
+}
+
+@media (min-width: 768px) {
+  .glass {
+    /* Desktop: full premium effect */
+    @apply bg-background/60 backdrop-blur-lg;
+  }
 }
 
 .text-glow {

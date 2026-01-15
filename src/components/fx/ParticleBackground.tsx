@@ -55,9 +55,10 @@ export const ParticleBackground = ({ mode = "hero_index", debug = false }: Parti
         const imageData = ctx.getImageData(0, 0, width, height).data;
         const points: { x: number; y: number }[] = [];
 
-        // Sample points every 4 pixels
-        for (let y = 0; y < height; y += 4) {
-            for (let x = 0; x < width; x += 4) {
+        // Sample points: coarser on mobile for performance
+        const step = window.innerWidth < 768 ? 6 : 4;
+        for (let y = 0; y < height; y += step) {
+            for (let x = 0; x < width; x += step) {
                 const alpha = imageData[(y * width + x) * 4 + 3];
                 if (alpha > 128) {
                     points.push({
@@ -128,8 +129,16 @@ export const ParticleBackground = ({ mode = "hero_index", debug = false }: Parti
 
             // Determine active count based on mode and device
             let activeCount = config.count;
-            if (window.innerWidth < 768) activeCount *= 0.5;
-            if (shouldReduceMotion) activeCount *= 0.3;
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                // Aggressive reduction for mobile
+                activeCount = mode === "evorixGhost" ? 100 : activeCount * 0.4;
+            }
+
+            if (shouldReduceMotion) {
+                activeCount = 0; // Disable animation loop entirely for reduced motion preference
+            }
 
             particles.current.slice(0, Math.ceil(activeCount)).forEach((p) => {
                 if (mode === "evorixGhost" && p.isGhost && p.targetX !== undefined && p.targetY !== undefined) {
@@ -190,7 +199,9 @@ export const ParticleBackground = ({ mode = "hero_index", debug = false }: Parti
                 }
             });
 
-            animationFrameId.current = requestAnimationFrame(animate);
+            if (!shouldReduceMotion && activeCount > 0) {
+                animationFrameId.current = requestAnimationFrame(animate);
+            }
         };
 
         window.addEventListener("resize", resizeCanvas);
@@ -206,10 +217,10 @@ export const ParticleBackground = ({ mode = "hero_index", debug = false }: Parti
     return (
         <canvas
             ref={canvasRef}
-            className="fixed inset-0 pointer-events-none z-0 bg-transparent transition-opacity duration-1000"
+            className="fixed inset-0 pointer-events-none z-0 bg-transparent transition-opacity duration-1000 md:blur-[0.5px]"
             style={{
                 opacity: mode === "hero_index" ? 0.3 : 0.6,
-                filter: "blur(0.5px)"
+                // Blur applied via class ONLY on desktop to save mobile GPU
             }}
         />
     );

@@ -6,16 +6,20 @@ import { useTour } from "./TourContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TypewriterText } from "@/components/ui/TypewriterText";
 
 export const TourOverlay = () => {
     const { isTourActive, currentStepIndex, steps, endTour, nextStep, prevStep } = useTour();
     const [highlightRect, setHighlightRect] = useState<DOMRect | null>(null);
     const [mounted, setMounted] = useState(false);
     const originalOverflowRef = useRef<string>("");
+    const [isMobile, setIsMobile] = useState(false);
 
     // Mount check prevents hydration mismatch
     useEffect(() => {
         setMounted(true);
+        // Basic mobile detection
+        setIsMobile(window.innerWidth < 768);
     }, []);
 
     // 1. SCROLL LOCK & ESCAPE HANDLING (BULLETPROOF)
@@ -39,7 +43,23 @@ export const TourOverlay = () => {
         }
     }, [isTourActive, endTour]);
 
-    // 2. RECT CALCULATION (ROBUST & DEBOUNCED)
+    // 2. SCROLL TO TARGET (ON STEP CHANGE ONLY)
+    useEffect(() => {
+        if (!isTourActive || currentStepIndex === -1) return;
+
+        const step = steps[currentStepIndex];
+        if (!step) return;
+
+        const selector = `[data-tour="${step.target}"]`;
+        const element = document.querySelector(selector);
+
+        if (element) {
+            // Run once per step change
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    }, [currentStepIndex, isTourActive, steps]);
+
+    // 3. RECT CALCULATION (PASSIVE READ)
     const updateRect = () => {
         if (!isTourActive || currentStepIndex === -1) return;
 
@@ -52,8 +72,7 @@ export const TourOverlay = () => {
         let newRect: DOMRect;
 
         if (element) {
-            // Smooth scroll to target
-            element.scrollIntoView({ behavior: "smooth", block: "center" });
+            // Just measure, never scroll here
             newRect = element.getBoundingClientRect();
         } else {
             // Fallback: Center spotlight
@@ -69,26 +88,35 @@ export const TourOverlay = () => {
         setHighlightRect(newRect);
     };
 
-    // React to step changes
+    // React to resize/scroll
     useEffect(() => {
         if (!isTourActive) return;
 
         // Immediate update request
         updateRect();
 
-        // Safety checks for layout shifts (after animations/scroll)
-        const t1 = setTimeout(updateRect, 100);
-        const t2 = setTimeout(updateRect, 400);
+        // Check continuously during potential smooth scroll
+        let animationFrameId: number;
+        const tick = () => {
+            updateRect();
+            animationFrameId = requestAnimationFrame(tick);
+        };
+        // Start loop to catch smooth scroll updates
+        tick();
 
-        const onResize = () => requestAnimationFrame(updateRect);
+        const onResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
         window.addEventListener("resize", onResize);
-        window.addEventListener("scroll", onResize, { passive: true });
+        // Scroll listener not strictly needed if we run a RAF loop, 
+        // but let's keep it mostly for passive updates if we stopped the loop.
+        // Actually, a RAF loop is better for smooth-scrolling tracking than scroll event.
+        // Let's rely on the loose RAF loop during tour.
 
         return () => {
-            clearTimeout(t1);
-            clearTimeout(t2);
+            cancelAnimationFrame(animationFrameId);
             window.removeEventListener("resize", onResize);
-            window.removeEventListener("scroll", onResize);
         };
     }, [isTourActive, currentStepIndex]);
 
@@ -111,18 +139,24 @@ export const TourOverlay = () => {
     const { top, left, width, height, bottom, right } = activeRect;
     const overlayColor = "rgba(0, 0, 0, 0.75)";
 
+    // Tiered blur: heavy on desktop, none on mobile for performance
+    const backdropClass = isMobile
+        ? "absolute pointer-events-auto transition-all duration-300 ease-out"
+        : "absolute pointer-events-auto transition-all duration-300 ease-out backdrop-blur-[2px]";
+
     const content = (
-        <div className="fixed inset-0 z-[9999] isolate pointer-events-auto">
+        // Wrapper is pointer-events-none to let clicks pass through the spotlight hole
+        <div className="fixed inset-0 z-[9999] isolate pointer-events-none font-sans">
             {/* BACKDROP: Always visible. Uses 4-part if rect exists, else full screen. */}
             {!useBackupRect ? (
                 <>
-                    <div className="absolute top-0 left-0 w-full pointer-events-auto transition-all duration-300 ease-out" style={{ height: top, backgroundColor: overlayColor }} />
-                    <div className="absolute left-0 pointer-events-auto transition-all duration-300 ease-out" style={{ top: top, height: height, width: left, backgroundColor: overlayColor }} />
-                    <div className="absolute right-0 pointer-events-auto transition-all duration-300 ease-out" style={{ top: top, height: height, width: windowWidth - right, backgroundColor: overlayColor }} />
-                    <div className="absolute bottom-0 left-0 w-full pointer-events-auto transition-all duration-300 ease-out" style={{ top: bottom, height: windowHeight - bottom, backgroundColor: overlayColor }} />
+                    <div className={backdropClass} style={{ top: 0, left: 0, width: '100%', height: top, backgroundColor: overlayColor }} />
+                    <div className={backdropClass} style={{ top: top, left: 0, height: height, width: left, backgroundColor: overlayColor }} />
+                    <div className={backdropClass} style={{ top: top, right: 0, height: height, width: windowWidth - right, backgroundColor: overlayColor }} />
+                    <div className={backdropClass} style={{ top: bottom, left: 0, width: '100%', height: windowHeight - bottom, backgroundColor: overlayColor }} />
                 </>
             ) : (
-                <div className="absolute inset-0 bg-black/75 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 pointer-events-auto" />
             )}
 
             {/* SPOTLIGHT BORDER */}
@@ -130,57 +164,75 @@ export const TourOverlay = () => {
                 layout
                 initial={false}
                 animate={{
-                    top: top - 4,
-                    left: left - 4,
-                    width: width + 8,
-                    height: height + 8
+                    top: top - 8,
+                    left: left - 8,
+                    width: width + 16,
+                    height: height + 16
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="absolute border-2 border-accent rounded-lg pointer-events-none z-[10000] shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="absolute border border-accent/60 rounded-xl pointer-events-none z-[10000] shadow-[0_0_50px_-10px_rgba(59,130,246,0.5)] box-content"
             />
 
-            {/* INTERACTIVE CARD */}
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={currentStepIndex}
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute z-[10001] pointer-events-auto w-[320px] bg-background/95 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl"
-                    style={{
-                        // Intelligent positioning: prefer bottom, flip to top if space limited
-                        top: (bottom + 20 + 300 > windowHeight) ? Math.max(20, top - 280) : bottom + 20,
-                        left: Math.max(20, Math.min(windowWidth - 340, left + (width / 2) - 160))
-                    }}
-                >
-                    <div className="flex justify-between items-start mb-4">
-                        <span className="text-[10px] uppercase tracking-widest font-bold text-accent">
-                            Paso {(currentStepIndex || 0) + 1} / {steps.length}
-                        </span>
-                        <button onClick={endTour} className="text-muted-foreground hover:text-foreground p-1 hover:bg-white/10 rounded-full transition-colors">
-                            <X size={16} />
-                        </button>
-                    </div>
+            {/* CENTERED MODAL CONTAINER - Decoupled from spotlight */}
+            <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4 pointer-events-none">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentStepIndex}
+                        initial={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(10px)" }}
+                        transition={{ duration: 0.4, ease: "circOut" }}
+                        className="pointer-events-auto w-full max-w-lg bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden"
+                    >
+                        {/* Glossy overlay effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
 
-                    <h3 className="text-xl font-bold mb-2 text-foreground">{steps[currentStepIndex]?.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                        {steps[currentStepIndex]?.content}
-                    </p>
+                        <div className="relative z-10">
+                            <div className="flex justify-between items-start mb-6">
+                                <span className="text-xs uppercase tracking-[0.2em] font-bold text-accent drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                                    Paso {(currentStepIndex || 0) + 1} / {steps.length}
+                                </span>
+                                <button onClick={endTour} className="text-white/40 hover:text-white p-2 hover:bg-white/10 rounded-full transition-all duration-300 group">
+                                    <X size={20} className="group-hover:rotate-90 transition-transform duration-300" />
+                                </button>
+                            </div>
 
-                    <div className="flex gap-2">
-                        {(currentStepIndex || 0) > 0 && (
-                            <Button variant="outline" size="sm" onClick={prevStep} className="flex-1">
-                                <ChevronLeft size={16} className="mr-1" /> Atrás
-                            </Button>
-                        )}
-                        <Button variant="glow" size="sm" onClick={nextStep} className="flex-1">
-                            {currentStepIndex === steps.length - 1 ? "Finalizar" : "Siguiente"}
-                            {currentStepIndex !== steps.length - 1 && <ChevronRight size={16} className="ml-1" />}
-                        </Button>
-                    </div>
-                </motion.div>
-            </AnimatePresence>
+                            <h3 className="text-3xl font-bold mb-4 text-white tracking-tight drop-shadow-md">
+                                {steps[currentStepIndex]?.title}
+                            </h3>
+
+                            <div className="text-lg text-gray-200 leading-relaxed mb-8 min-h-[80px]">
+                                <TypewriterText
+                                    content={steps[currentStepIndex]?.content}
+                                    speed={15}
+                                />
+                            </div>
+
+                            <div className="flex gap-4 pt-4 border-t border-white/5">
+                                {(currentStepIndex || 0) > 0 && (
+                                    <Button
+                                        variant="outline"
+                                        size="lg"
+                                        onClick={prevStep}
+                                        className="flex-1 bg-transparent border-white/20 text-white hover:bg-white/5 hover:border-white/40 hover:text-white transition-all"
+                                    >
+                                        <ChevronLeft size={18} className="mr-2" /> Atrás
+                                    </Button>
+                                )}
+                                <Button
+                                    variant="glow"
+                                    size="lg"
+                                    onClick={nextStep}
+                                    className="flex-1 text-base font-semibold shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all"
+                                >
+                                    {currentStepIndex === steps.length - 1 ? "Finalizar" : "Siguiente"}
+                                    {currentStepIndex !== steps.length - 1 && <ChevronRight size={18} className="ml-2" />}
+                                </Button>
+                            </div>
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
+            </div>
         </div>
     );
 

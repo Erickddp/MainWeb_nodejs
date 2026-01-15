@@ -8,14 +8,84 @@ export interface TourStep {
     content: string;
 }
 
+
+
+
+
+
+
+
+
+
+
 const TOUR_STEPS: TourStep[] = [
-    { target: "hero", title: "Bienvenido a EVORIX", content: "Donde la contabilidad convencional evoluciona a sistemas inteligentes. Comienza tu transformación aquí." },
-    { target: "problem", title: "El Problema", content: "La contabilidad tradicional es lenta y reactiva. Identificamos los cuellos de botella que frenan tu crecimiento." },
-    { target: "services", title: "Nuestras Soluciones", content: "Desde automatización fiscal hasta estrategia financiera. Servicios diseñados para la era digital." },
-    { target: "tools", title: "Tecnología Propia", content: "Conoce Evosys y nuestras herramientas exclusivas. Potencia real bajo tu control." },
-    { target: "testimonials", title: "Casos de Éxito", content: "Empresas que ya han evolucionado con nosotros. Resultados reales y medibles." },
-    { target: "contact", title: "Contacta", content: "¿Listo para dar el siguiente paso? Hablemos de cómo integrar EVORIX en tu negocio." }
+    {
+        target: "hero",
+        title: "Empecemos por lo importante",
+        content: "Aquí no se trata de trabajar más. Se trata de que tu sistema deje de estorbarte."
+    },
+    {
+        target: "problem",
+        title: "Esto suele pasar",
+        content: "Si repites tareas, corriges lo mismo cada mes o todo depende de una persona, no es normal. Es desorden."
+    },
+    {
+        target: "workflow",
+        title: "Así trabajo contigo",
+        content: "Primero observo cómo trabajas en realidad. Sin suposiciones. Sin juicios."
+    },
+    {
+        target: "services",
+        title: "Qué puedo ordenar",
+        content: "Desde lo fiscal hasta lo operativo. Orden, claridad y menos desgaste en el día a día."
+    },
+    {
+        target: "system",
+        title: "Todo conectado",
+        content: "Cuando la información se ordena, las decisiones dejan de ser complicadas."
+    },
+    {
+        target: "tools",
+        title: "Herramientas propias",
+        content: "Uso herramientas hechas para resolver problemas reales, no soluciones genéricas."
+    },
+    {
+        target: "testimonials",
+        title: "Lo que cambia",
+        content: "Menos presión. Más claridad. Más tranquilidad."
+    },
+    {
+        target: "about",
+        title: "Quién está detrás",
+        content: "Vengo de la contabilidad tradicional. Por eso sé exactamente dónde se rompe un negocio."
+    },
+    {
+        target: "contact",
+        title: "Si esto te hizo sentido",
+        content: "Podemos ordenar tu sistema sin complicarte ni cambiarlo todo. Hablemos."
+    }
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 interface TourContextProps {
     isTourActive: boolean;

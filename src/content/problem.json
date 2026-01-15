@@ -1,21 +1,21 @@
 {
     "title": "¿Tu sistema actual te limita?",
-    "subtitle": "No es falta de esfuerzo. Es falta de orden.",
+    "subtitle": "No es que trabajes poco. Es que trabajas sin orden.",
     "bullets": [
         {
             "icon": "clipboard-list",
             "title": "Captura Manual",
-            "desc": "Pierdes tiempo y vuelves a hacer lo mismo."
+            "desc": "Pierdes tiempo repitiendo lo que debería resolverse solo."
         },
         {
             "icon": "alert-circle",
             "title": "Errores Repetidos",
-            "desc": "Lo corriges hoy y regresa mañana."
+            "desc": "Lo corriges hoy y vuelve a aparecer mañana."
         },
         {
             "icon": "users",
             "title": "Dependencia Extrema",
-            "desc": "Si alguien falta, todo se frena."
+            "desc": "Si alguien falta, todo se detiene."
         }
     ]
 }

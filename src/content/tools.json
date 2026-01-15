@@ -1,7 +1,7 @@
 {
     "evoapp": {
         "title": "EVOAPP",
-        "desc": "Control central de tu información.",
+        "desc": "Un solo lugar para ver y controlar tu información.",
         "statusLabel": "BETA",
         "ctaLabel": "Explorar",
         "ctaHref": "app.evorix.com",
@@ -15,13 +15,13 @@
     },
     "evotools": {
         "title": "EVOTOOLS",
-        "desc": "Herramientas y automatizaciones para tareas repetidas.",
+        "desc": "Automatizaciones que eliminan tareas repetitivas   ",
         "ctaLabel": "Ver Herramientas",
         "ctaHref": "/tools"
     },
     "evolab": {
         "title": "EVOLAB",
-        "desc": "En desarrollo...",
+        "desc": "Espacio de prueba antes de implementar.",
         "ctaLabel": "Contactar",
         "ctaHref": "#contacto"
     }

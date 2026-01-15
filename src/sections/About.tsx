@@ -4,6 +4,8 @@ import { useContent } from "@/components/ContentProvider";
 import { SectionShell } from "@/components/layout/SectionShell";
 import { MotionWrapper } from "@/components/motion/MotionWrapper";
 import { GlassCard } from "@/components/ui/GlassCard";
+import Image from "next/image";
+
 
 export const About = () => {
     const { about } = useContent() as any;
@@ -33,11 +35,19 @@ export const About = () => {
                     <div className="md:col-span-2">
                         <MotionWrapper delay={0.2} preset="scale" className="h-full">
                             <GlassCard className="h-full border-white/10 flex flex-col justify-center items-center p-12 text-center bg-white/[0.02]" interactive>
-                                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent/30 to-primary/30 mb-8 flex items-center justify-center text-5xl shadow-2xl shadow-accent/20">
-                                    🚀
+                                <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gradient-to-br from-accent/30 to-primary/30 mb-8 shadow-2xl shadow-accent/20">
+                                    <Image
+                                        src="/img/f1.png"
+                                        alt="Erick DDP"
+                                        fill
+                                        sizes="128px"
+                                        className="object-cover"
+                                        priority
+                                    />
                                 </div>
-                                <p className="text-[10px] font-mono tracking-widest opacity-40 mb-2 uppercase">Founder_Verification_OK</p>
-                                <h4 className="font-bold text-lg">Evolución Garantizada</h4>
+
+                                <p className="text-[10px] font-mono tracking-widest opacity-40 mb-2 uppercase">Contador Publico</p>
+                                <h4 className="font-bold text-lg">Erick Dominguez</h4>
                                 <div className="mt-6 h-px w-12 bg-accent/30" />
                             </GlassCard>
                         </MotionWrapper>

@@ -1,21 +1,21 @@
 {
     "title": "Así trabajo contigo",
-    "subtitle": "Primero veo cómo trabajas hoy. Sin suposiciones.",
+    "subtitle": "Primero observo cómo trabajas, y adapto los sistemas para ti.",
     "steps": [
         {
             "step": "01",
             "title": "Entiendo",
-            "desc": "Reviso tu forma real de operar y dónde se está perdiendo tiempo."
+            "desc": "Observo tu operación diaria y dónde se está drenando el tiempo."
         },
         {
             "step": "02",
             "title": "Ordeno",
-            "desc": "Ajusto procesos y automatizo lo que hoy te desgasta."
+            "desc": "Simplifico procesos y automatizo lo que hoy te desgasta."
         },
         {
             "step": "03",
             "title": "Sostengo",
-            "desc": "El sistema queda estable para que no vuelvas al caos."
+            "desc": "El sistema queda estable para que no regreses al desorden."
         }
     ]
 }
