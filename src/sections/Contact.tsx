@@ -15,8 +15,8 @@ export const Contact = () => {
                 <MotionWrapper preset="up">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">Hablemos de tu Sistema</h2>
                     <p className="text-muted-foreground text-lg mb-12">
-                        ¿Listo para evolucionar? Conecta con nosotros a través de cualquiera de estos canales o
-                        síguenos para ver nuestras últimas innovaciones.
+                        ¿Tu negocio funciona, pero te exige demasiado?
+                        Podemos ordenarlo.
                     </p>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -49,14 +49,17 @@ export const Contact = () => {
                             <Button variant="glow" className="w-full py-7 text-lg mt-4">Enviar Solicitud</Button>
                         </div>
 
-                        {/* Footer (mismo contenido, solo movido para que quede debajo del formulario) */}
-                        <div className="mt-20 text-xs font-mono opacity-50 tracking-widest leading-loose">
-                            © 2026 EVORIX. TODOS LOS DERECHOS RESERVADOS. <br />
-                            <span className="text-accent">BUILT BY EVORIX IN THE AGENTIC AGE.</span>
-                        </div>
                     </GlassCard>
                 </MotionWrapper>
             </div>
+            <div className="mt-24 text-center text-xs font-mono tracking-widest leading-loose opacity-50">
+                © 2026 Eddp. TODOS LOS DERECHOS RESERVADOS.
+                <br />
+                <span className="block mt-2 text-accent/80">
+                    BUILT BY EDDP IN THE AGENTIC AGE.
+                </span>
+            </div>
+
         </SectionShell>
     );
 };
