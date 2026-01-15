@@ -1,0 +1,53 @@
+[
+    {
+        "id": "strategy",
+        "title": "Asesoría Estratégica",
+        "intro": "Liderazgo y visión para escalar tu modelo de negocio.",
+        "bullets": [
+            "Optimización de procesos",
+            "Planificación trimestral",
+            "KPIs en tiempo real"
+        ],
+        "idealFor": [
+            "Startups",
+            "Empresas en crecimiento"
+        ],
+        "priceLabel": "Desde $500/mes",
+        "ctaLabel": "Saber más",
+        "ctaHref": "#contacto"
+    },
+    {
+        "id": "accounting",
+        "title": "Contabilidad",
+        "intro": "Claridad fiscal absoluta y cumplimiento sin fricciones.",
+        "bullets": [
+            "Gestión de impuestos",
+            "Reportes mensuales",
+            "Auditoría preventiva"
+        ],
+        "idealFor": [
+            "Freelancers",
+            "Pymes"
+        ],
+        "priceLabel": "Desde $200/mes",
+        "ctaLabel": "Saber más",
+        "ctaHref": "#contacto"
+    },
+    {
+        "id": "digitalization",
+        "title": "Digitalización",
+        "intro": "Tu infraestructura tecnológica lista para el futuro.",
+        "bullets": [
+            "Automatización de flujos",
+            "Migración a la nube",
+            "Integración de herramientas"
+        ],
+        "idealFor": [
+            "Empresas tradicionales",
+            "Equipos remotos"
+        ],
+        "priceLabel": "Presupuesto a medida",
+        "ctaLabel": "Saber más",
+        "ctaHref": "#contacto"
+    }
+]

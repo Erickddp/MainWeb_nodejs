@@ -1,0 +1,21 @@
+{
+    "title": "¿Tu sistema actual te limita?",
+    "subtitle": "Identifica los cuellos de botella que frenan tu crecimiento.",
+    "bullets": [
+        {
+            "icon": "clipboard-list",
+            "title": "Captura Manual",
+            "desc": "Pérdida de tiempo y errores constantes en el ingreso de datos."
+        },
+        {
+            "icon": "alert-circle",
+            "title": "Errores Repetidos",
+            "desc": "Falta de estandarización que genera retrabajos constantes."
+        },
+        {
+            "icon": "users",
+            "title": "Dependencia Extrema",
+            "desc": "El negocio se detiene si piezas clave del equipo no están presentes."
+        }
+    ]
+}

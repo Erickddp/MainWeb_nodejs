@@ -1,0 +1,49 @@
+{
+    "sectionOrder": [
+        "hero",
+        "problem",
+        "method",
+        "services",
+        "systems",
+        "tools",
+        "testimonials",
+        "about",
+        "cta",
+        "contact"
+    ],
+    "nav": [
+        {
+            "label": "Inicio",
+            "anchor": "inicio"
+        },
+        {
+            "label": "Problema",
+            "anchor": "problema"
+        },
+        {
+            "label": "Servicios",
+            "anchor": "servicios"
+        },
+        {
+            "label": "Ecosistema",
+            "anchor": "ecosistema"
+        },
+        {
+            "label": "Herramientas",
+            "anchor": "herramientas"
+        },
+        {
+            "label": "Referencias",
+            "anchor": "referencias"
+        },
+        {
+            "label": "Sobre mí",
+            "anchor": "sobre-mi"
+        },
+        {
+            "label": "Contacto",
+            "anchor": "contacto"
+        }
+    ],
+    "themeDefault": "system"
+}

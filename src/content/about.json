@@ -1,0 +1,23 @@
+{
+    "title": "Sobre Mi",
+    "lead": "Comprometido con la excelencia operativa y la innovación tecnológica.",
+    "paragraphs": [
+        "EDDP nace de la necesidad de unificar la estrategia de negocio con la potencia de la digitalización. No solo implementamos herramientas, diseñamos sistemas que evolucionan contigo.",
+        "Bajo un enfoque de transparencia y resultados, ayudamos a emprendedores y empresas a salir del modo supervivencia para entrar en modo expansión."
+    ],
+    "signatureLine": "Erick ddp, Founder & Systems Engineer.",
+    "achievements": [
+        {
+            "label": "Cursos realizados",
+            "value": "40+"
+        },
+        {
+            "label": "Proyectos lanzados",
+            "value": "10+"
+        },
+        {
+            "label": "Años de experiencia",
+            "value": "6+"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "evoapp": {
+        "title": "EVOAPP",
+        "desc": "Terminal de gestión centralizada para el control total de tu ecosistema digital.",
+        "statusLabel": "BETA",
+        "ctaLabel": "Explorar Terminal",
+        "ctaHref": "/evoapp",
+        "terminalLines": [
+            "> Initializing EVOSYS core...",
+            "> Connection established with node_01",
+            "> Loading user preferences...",
+            "> Security layer: ACTIVE",
+            "> Ready for input."
+        ]
+    },
+    "evotools": {
+        "title": "EVOTOOLS",
+        "desc": "Suite de herramientas personalizadas para optimizar tareas repetitivas y análisis.",
+        "ctaLabel": "Ver Herramientas",
+        "ctaHref": "/tools"
+    },
+    "evolab": {
+        "title": "EVOLAB",
+        "desc": "Laboratorio de experimentación y desarrollo de prototipos innovadores.",
+        "ctaLabel": "Contactar",
+        "ctaHref": "#contacto"
+    }
+}

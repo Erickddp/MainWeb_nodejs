@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Alex Rivera",
+        "role": "CEO en TechSolutions",
+        "quote": "La implementación de EVORIX transformó nuestra visión financiera. Ahora tomamos decisiones basadas en datos reales.",
+        "highlight": "Eficiencia +40%"
+    },
+    {
+        "name": "Maria Garcia",
+        "role": "Directora de Operaciones",
+        "quote": "El nivel de automatización alcanzado superó nuestras expectativas. Ahorramos horas de trabajo manual cada semana.",
+        "highlight": "Retorno de Inversión rápido"
+    },
+    {
+        "name": "Daniel Santos",
+        "role": "Fundador de CreativeCloud",
+        "quote": "Un socio estratégico indispensable para cualquier empresa que busque escalar de forma organizada.",
+        "highlight": "Claridad total"
+    }
+]

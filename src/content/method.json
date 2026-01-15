@@ -1,0 +1,21 @@
+{
+    "title": "Metodología EVO",
+    "subtitle": "Un proceso cíclico diseñado para la mejora continua.",
+    "steps": [
+        {
+            "step": "01",
+            "title": "Diagnóstico",
+            "desc": "Análisis profundo de tus flujos actuales y detección de fugas."
+        },
+        {
+            "step": "02",
+            "title": "Sistematización",
+            "desc": "Construcción de la infraestructura y automatización de procesos."
+        },
+        {
+            "step": "03",
+            "title": "Evolución",
+            "desc": "Optimización basada en datos y escalabilidad sin fricción."
+        }
+    ]
+}
