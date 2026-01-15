@@ -50,6 +50,7 @@ export interface TestimonialItem {
     quote: string;
     photo?: string;
     highlight?: string;
+    imageSrc?: string; // ✅ AGREGAR ESTO
 }
 
 export interface AchievementItem {

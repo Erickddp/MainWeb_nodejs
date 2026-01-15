@@ -3,18 +3,21 @@
         "name": "Raquel H",
         "role": "Médica",
         "quote": "Desde que Erick lleva mi contabilidad, todo está claro. Su asesoria de impuestos me ah ahorrado mucho dinero.",
-        "highlight": "Eficiencia +40%"
+        "highlight": "Eficiencia +40%",
+        "imageSrc": "/img/r1.png"
     },
     {
         "name": "Daniel P",
         "role": "Conductor de Uber",
         "quote": "Antes me preocupaba cada mes por la contabilidad. Hoy solo manejo y sé que todo está en orden.",
-        "highlight": "Cero estrés fiscal"
+        "highlight": "Cero estrés fiscal",
+        "imageSrc": "/img/r2.png"
     },
     {
-        "name": "Alejandro C",
+        "name": "Alejandra C",
         "role": "Emprendedor independiente",
         "quote": "Erick ordenó mis números y mis procesos contables. Ahora puedo enfocarme en hacer crecer el negocio.",
-        "highlight": "Claridad total"
+        "highlight": "Claridad total",
+        "imageSrc": "/img/r3.png"
     }
 ]

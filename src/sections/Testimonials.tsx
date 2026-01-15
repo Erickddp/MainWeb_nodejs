@@ -5,6 +5,7 @@ import { SectionShell } from "@/components/layout/SectionShell";
 import { MotionWrapper } from "@/components/motion/MotionWrapper";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { motion } from "framer-motion";
+import Image from "next/image"; // ✅ AGREGADO (no quita nada)
 
 export const Testimonials = () => {
     const { testimonials = [] } = useContent();
@@ -12,10 +13,9 @@ export const Testimonials = () => {
     return (
         <SectionShell id="referencias" data-tour="testimonials" className="overflow-hidden">
             <MotionWrapper className="text-center mb-16" preset="fade">
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">Resultados</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">Referencias de Éxito</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Casos reales. Personas reales.
-                    Menos carga. Más tranquilidad.
+                    Casos reales de transformación digital y financiera.
                 </p>
             </MotionWrapper>
 
@@ -54,9 +54,21 @@ export const Testimonials = () => {
                                     </div>
                                     <div className="not-italic flex items-center justify-between border-t border-white/10 pt-6">
                                         <div className="flex items-center gap-4">
-                                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-accent/40 to-primary/40 flex items-center justify-center font-bold text-sm">
-                                                {t.name.charAt(0)}
+                                            {/* ✅ MISMO DIV, SIN CREAR OTRO. SOLO SE CAMBIA EL CONTENIDO */}
+                                            <div className="relative h-10 w-10 rounded-full bg-gradient-to-br from-accent/40 to-primary/40 flex items-center justify-center font-bold text-sm overflow-hidden shrink-0">
+                                                {t.imageSrc ? (
+                                                    <Image
+                                                        src={t.imageSrc}
+                                                        alt={t.name}
+                                                        fill
+                                                        sizes="40px"
+                                                        className="object-cover"
+                                                    />
+                                                ) : (
+                                                    t.name.charAt(0)
+                                                )}
                                             </div>
+
                                             <div>
                                                 <div className="font-bold text-sm tracking-wide">{t.name}</div>
                                                 <div className="text-xs text-muted-foreground uppercase">{t.role}</div>
