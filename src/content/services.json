@@ -2,51 +2,57 @@
     {
         "id": "strategy",
         "title": "Asesoría Estratégica",
-        "intro": "Liderazgo y visión para escalar tu modelo de negocio.",
+        "intro": "Reviso cómo estás operando hoy y te indico qué ajustes necesitas hacer primero para recuperar control y tomar mejores decisiones.",
         "bullets": [
             "Optimización de procesos",
-            "Planificación trimestral",
-            "KPIs en tiempo real"
+            "Orden fiscal y operativo",
+            "Ruta clara de acción"
         ],
         "idealFor": [
-            "Startups",
-            "Empresas en crecimiento"
+            "Pymes",
+            "Emprendedores",
+            "Freelancers",
+            "Contribuyentes SAT"
         ],
-        "priceLabel": "Desde $500/mes",
+        "priceLabel": "$499 MXN",
         "ctaLabel": "Saber más",
         "ctaHref": "#contacto"
     },
     {
         "id": "accounting",
         "title": "Contabilidad",
-        "intro": "Claridad fiscal absoluta y cumplimiento sin fricciones.",
+        "intro": "Gestiono tu contabilidad para que cumplas, entiendas tus números y tengas control sin fricciones ni sorpresas.",
         "bullets": [
             "Gestión de impuestos",
             "Reportes mensuales",
-            "Auditoría preventiva"
+            "Prevención de errores"
         ],
         "idealFor": [
-            "Freelancers",
-            "Pymes"
+            "Personas físicas",
+            "Personas morales",
+            "Negocios activos",
+            "Ingresos constantes"
         ],
-        "priceLabel": "Desde $200/mes",
+        "priceLabel": "Desde $500 MXN / mes",
         "ctaLabel": "Saber más",
         "ctaHref": "#contacto"
     },
     {
         "id": "digitalization",
         "title": "Digitalización",
-        "intro": "Tu infraestructura tecnológica lista para el futuro.",
+        "intro": "Diseño e implemento sistemas que eliminan tareas repetitivas y ordenan tu operación según tu forma real de trabajar.",
         "bullets": [
             "Automatización de flujos",
             "Migración a la nube",
             "Integración de herramientas"
         ],
         "idealFor": [
-            "Empresas tradicionales",
-            "Equipos remotos"
+            "Negocios tradicionales",
+            "Equipos pequeños",
+            "Equipos remotos",
+            "Procesos repetitivos"
         ],
-        "priceLabel": "Presupuesto a medida",
+        "priceLabel": "Proyecto a medida",
         "ctaLabel": "Saber más",
         "ctaHref": "#contacto"
     }

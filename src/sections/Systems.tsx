@@ -41,8 +41,8 @@ export const Systems = () => {
 
                 <MotionWrapper delay={0.2} preset="scale">
                     <GlassCard className="aspect-square flex items-center justify-center border-accent/20 overflow-hidden relative group" interactive>
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent group-hover:from-accent/10 transition-colors" />
-                        <div className="relative text-center p-8">
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent group-hover:from-accent/10 transition-colors pointer-events-none" />
+                        <div className="relative z-10 text-center p-8">
                             <div className="mb-6 opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 w-full h-[320px] md:h-auto md:aspect-square flex items-center justify-center">
                                 <GearSystemNode className="w-full h-full" />
                             </div>

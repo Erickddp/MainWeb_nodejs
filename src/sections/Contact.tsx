@@ -5,9 +5,53 @@ import { SectionShell } from "@/components/layout/SectionShell";
 import { MotionWrapper } from "@/components/motion/MotionWrapper";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Button } from "@/components/ui/button";
+import { Facebook, Github, Linkedin, Globe, MessageCircle, LucideIcon } from "lucide-react";
 
 export const Contact = () => {
     const { links } = useContent() as any;
+
+    const contactItems = [
+        {
+            label: "WhatsApp",
+            href: links.whatsapp,
+            Icon: MessageCircle,
+            // Brand Color: #25D366
+            colorClass: "hover:border-[#25D366]/30 hover:bg-[#25D366]/10",
+            iconClass: "group-hover:text-[#25D366]",
+        },
+        {
+            label: "LinkedIn",
+            href: links.linkedin,
+            Icon: Linkedin,
+            // Brand Color: #0A66C2
+            colorClass: "hover:border-[#0A66C2]/30 hover:bg-[#0A66C2]/10",
+            iconClass: "group-hover:text-[#0A66C2]",
+        },
+        {
+            label: "Facebook",
+            href: links.facebook || "#", // Fallback if not in content
+            Icon: Facebook,
+            // Brand Color: #1877F2
+            colorClass: "hover:border-[#1877F2]/30 hover:bg-[#1877F2]/10",
+            iconClass: "group-hover:text-[#1877F2]",
+        },
+        {
+            label: "GitHub",
+            href: links.github,
+            Icon: Github,
+            // Brand Color: #FFFFFF
+            colorClass: "hover:border-[#FFFFFF]/30 hover:bg-[#FFFFFF]/10",
+            iconClass: "group-hover:text-[#FFFFFF]",
+        },
+        {
+            label: "Portfolio",
+            href: links.portfolio,
+            Icon: Globe,
+            // Brand Color: #00E0FF
+            colorClass: "hover:border-[#00E0FF]/30 hover:bg-[#00E0FF]/10",
+            iconClass: "group-hover:text-[#00E0FF]",
+        },
+    ];
 
     return (
         <SectionShell id="contacto" data-tour="contact">
@@ -19,11 +63,10 @@ export const Contact = () => {
                         Podemos ordenarlo.
                     </p>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <ContactLink href={links.whatsapp} label="WhatsApp" icon="💬" />
-                        <ContactLink href={links.linkedin} label="LinkedIn" icon="🔗" />
-                        <ContactLink href={links.github} label="GitHub" icon="💻" />
-                        <ContactLink href={links.portfolio} label="Portfolio" icon="🌐" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {contactItems.map((item) => (
+                            <ContactLink key={item.label} {...item} />
+                        ))}
                     </div>
                 </MotionWrapper>
 
@@ -64,14 +107,22 @@ export const Contact = () => {
     );
 };
 
-const ContactLink = ({ href, label, icon }: { href: string; label: string; icon: string }) => (
+interface ContactLinkProps {
+    href: string;
+    label: string;
+    Icon: LucideIcon;
+    colorClass: string;
+    iconClass: string;
+}
+
+const ContactLink = ({ href, label, Icon, colorClass, iconClass }: ContactLinkProps) => (
     <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-3 p-4 rounded-xl border border-border/10 hover:border-accent/30 hover:bg-accent/5 transition-all"
+        className={`group flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-transparent transition-all duration-300 ${colorClass}`}
     >
-        <span className="text-xl grayscale group-hover:grayscale-0 transition-all">{icon}</span>
-        <span className="text-sm font-bold">{label}</span>
+        <Icon className={`w-5 h-5 text-gray-400 transition-colors duration-300 ${iconClass}`} />
+        <span className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors duration-300">{label}</span>
     </a>
 );
