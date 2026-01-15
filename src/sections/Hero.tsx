@@ -47,10 +47,7 @@ export const Hero = () => {
 
                     <button
                         type="button"
-                        onClick={() => {
-                            console.log("CLICK TOUR");
-                            startTour();
-                        }}
+                        onClick={startTour}
                         className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-accent hover:text-accent/80 transition-colors ml-2 relative z-10"
                     >
                         <span className="h-10 w-10 rounded-full border border-accent/30 flex items-center justify-center bg-accent/5">
@@ -58,7 +55,6 @@ export const Hero = () => {
                         </span>
                         Ver recorrido guiado
                     </button>
-
                 </div>
             </MotionWrapper>
         </SectionShell>

@@ -10,7 +10,7 @@ export const Contact = () => {
     const { links } = useContent() as any;
 
     return (
-        <SectionShell id="contacto" data-tour-step="contact">
+        <SectionShell id="contacto" data-tour="contact">
             <div className="grid md:grid-cols-2 gap-16 items-start">
                 <MotionWrapper preset="up">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">Hablemos de tu Sistema</h2>

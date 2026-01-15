@@ -10,7 +10,7 @@ export const Problem = () => {
     const { bullets = [] } = problem || {};
 
     return (
-        <SectionShell id="problema" data-tour-step="problem">
+        <SectionShell id="problema" data-tour="problem">
             <MotionWrapper className="max-w-4xl mx-auto text-center" preset="up">
                 <h2 className="text-3xl md:text-5xl font-bold mb-8">
                     {problem.title}

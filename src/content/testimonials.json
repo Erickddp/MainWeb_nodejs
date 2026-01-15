@@ -1,20 +1,20 @@
 [
     {
-        "name": "Alex Rivera",
-        "role": "CEO en TechSolutions",
-        "quote": "La implementación de EVORIX transformó nuestra visión financiera. Ahora tomamos decisiones basadas en datos reales.",
+        "name": "Raquel H",
+        "role": "Médica",
+        "quote": "Desde que Erick lleva mi contabilidad, todo está claro. Su asesoria de impuestos me ah ahorrado mucho dinero.",
         "highlight": "Eficiencia +40%"
     },
     {
-        "name": "Maria Garcia",
-        "role": "Directora de Operaciones",
-        "quote": "El nivel de automatización alcanzado superó nuestras expectativas. Ahorramos horas de trabajo manual cada semana.",
-        "highlight": "Retorno de Inversión rápido"
+        "name": "Daniel P",
+        "role": "Conductor de Uber",
+        "quote": "Antes me preocupaba cada mes por la contabilidad. Hoy solo manejo y sé que todo está en orden.",
+        "highlight": "Cero estrés fiscal"
     },
     {
-        "name": "Daniel Santos",
-        "role": "Fundador de CreativeCloud",
-        "quote": "Un socio estratégico indispensable para cualquier empresa que busque escalar de forma organizada.",
+        "name": "Alejandro C",
+        "role": "Emprendedor independiente",
+        "quote": "Erick ordenó mis números y mis procesos contables. Ahora puedo enfocarme en hacer crecer el negocio.",
         "highlight": "Claridad total"
     }
 ]

@@ -13,11 +13,11 @@ export const Tools = () => {
     const { evoapp = { terminalLines: [] }, evotools = {}, evolab = {} } = tools || {};
 
     return (
-        <SectionShell id="herramientas" data-tour-step="tools">
+        <SectionShell id="herramientas" data-tour="tools">
             <MotionWrapper className="text-center mb-16" preset="fade">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">Herramientas Propias</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Evosys: El motor que impulsa cada decisión con precisión quirúrgica.
+                    Hechas para problemas reales.
                 </p>
             </MotionWrapper>
 

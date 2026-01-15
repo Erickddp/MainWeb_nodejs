@@ -10,11 +10,12 @@ export const Testimonials = () => {
     const { testimonials = [] } = useContent();
 
     return (
-        <SectionShell id="referencias" data-tour-step="testimonials" className="overflow-hidden">
+        <SectionShell id="referencias" data-tour="testimonials" className="overflow-hidden">
             <MotionWrapper className="text-center mb-16" preset="fade">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">Referencias de Éxito</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Casos reales de transformación digital y financiera.
+                    Casos reales. Personas reales.
+                    Menos carga. Más tranquilidad.
                 </p>
             </MotionWrapper>
 

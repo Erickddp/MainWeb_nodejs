@@ -1,21 +1,21 @@
 {
-    "title": "Metodología EVO",
-    "subtitle": "Un proceso cíclico diseñado para la mejora continua.",
+    "title": "Así trabajo contigo",
+    "subtitle": "Primero veo cómo trabajas hoy. Sin suposiciones.",
     "steps": [
         {
             "step": "01",
-            "title": "Diagnóstico",
-            "desc": "Análisis profundo de tus flujos actuales y detección de fugas."
+            "title": "Entiendo",
+            "desc": "Reviso tu forma real de operar y dónde se está perdiendo tiempo."
         },
         {
             "step": "02",
-            "title": "Sistematización",
-            "desc": "Construcción de la infraestructura y automatización de procesos."
+            "title": "Ordeno",
+            "desc": "Ajusto procesos y automatizo lo que hoy te desgasta."
         },
         {
             "step": "03",
-            "title": "Evolución",
-            "desc": "Optimización basada en datos y escalabilidad sin fricción."
+            "title": "Sostengo",
+            "desc": "El sistema queda estable para que no vuelvas al caos."
         }
     ]
 }

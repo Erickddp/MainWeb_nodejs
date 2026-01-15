@@ -21,7 +21,7 @@ export const Services = () => {
     return (
         <SectionShell
             id="servicios"
-            data-tour-step="services"
+            data-tour="services"
             className="py-14 md:py-24"
         >
             {/* Pill Selector */}

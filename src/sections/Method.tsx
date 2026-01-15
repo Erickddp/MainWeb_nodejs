@@ -10,7 +10,7 @@ export const Method = () => {
     const { steps = [] } = method || {};
 
     return (
-        <SectionShell id="metodo" data-tour-step="3" className="pb-0" containerClassName="border-t border-border/10 pt-20">
+        <SectionShell id="metodo" className="pb-0" containerClassName="border-t border-border/10 pt-20">
             <MotionWrapper className="text-center mb-16" preset="fade">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">{method.title}</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

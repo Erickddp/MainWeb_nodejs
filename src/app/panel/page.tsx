@@ -6,7 +6,7 @@ import { getContent, saveDraft } from "@/lib/admin-actions";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { MoveUp, MoveDown, Eye, Save, AlertCircle, Zap } from "lucide-react";
-import { useTour } from "@/components/tour/TourContext";
+
 
 export default function OverviewPage() {
     const [config, setConfig] = useState<{ sectionOrder: string[] } | null>(null);

@@ -1,21 +1,21 @@
 {
     "title": "¿Tu sistema actual te limita?",
-    "subtitle": "Identifica los cuellos de botella que frenan tu crecimiento.",
+    "subtitle": "No es falta de esfuerzo. Es falta de orden.",
     "bullets": [
         {
             "icon": "clipboard-list",
             "title": "Captura Manual",
-            "desc": "Pérdida de tiempo y errores constantes en el ingreso de datos."
+            "desc": "Pierdes tiempo y vuelves a hacer lo mismo."
         },
         {
             "icon": "alert-circle",
             "title": "Errores Repetidos",
-            "desc": "Falta de estandarización que genera retrabajos constantes."
+            "desc": "Lo corriges hoy y regresa mañana."
         },
         {
             "icon": "users",
             "title": "Dependencia Extrema",
-            "desc": "El negocio se detiene si piezas clave del equipo no están presentes."
+            "desc": "Si alguien falta, todo se frena."
         }
     ]
 }

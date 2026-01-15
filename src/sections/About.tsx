@@ -10,7 +10,7 @@ export const About = () => {
     const { paragraphs = [], achievements = [] } = about || {};
 
     return (
-        <div data-tour-step="about">
+        <div>
             <SectionShell id="sobre-mi">
                 <div className="grid md:grid-cols-5 gap-16">
                     <div className="md:col-span-3">

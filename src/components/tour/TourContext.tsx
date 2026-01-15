@@ -1,146 +1,79 @@
 "use client";
 
-import React, {
-    createContext,
-    useContext,
-    useState,
-    ReactNode,
-    useEffect,
-} from "react";
+import React, { createContext, useContext, useState, useMemo, ReactNode } from "react";
 
 export interface TourStep {
-    id: string;
+    target: string; // The data-tour ID
     title: string;
     content: string;
-    target: string; // CSS selector OR data-tour value
 }
 
 const TOUR_STEPS: TourStep[] = [
-    {
-        id: "hero",
-        title: "Bienvenido a EVORIX",
-        content:
-            "Aquí comienza tu evolución digital. Nuestra propuesta de valor se centra en resultados tangibles.",
-        target: "hero",
-    },
-    {
-        id: "problem",
-        title: "Identificamos el Caos",
-        content: "Entendemos los cuellos de botella que frenan tu crecimiento.",
-        target: "problem",
-    },
-    {
-        id: "services",
-        title: "Servicios Estratégicos",
-        content: "Explora nuestras soluciones modulares diseñadas para escalar.",
-        target: "services",
-    },
-    {
-        id: "tools",
-        title: "Tecnología Propia",
-        content:
-            "EVOAPP es nuestra terminal de control centralizada. Gestión en tiempo real.",
-        target: "tools",
-    },
-    {
-        id: "testimonials",
-        title: "Casos de Éxito",
-        content: "La confianza de líderes que ya transformaron sus sistemas.",
-        target: "testimonials",
-    },
-    {
-        id: "contact",
-        title: "Paso Final",
-        content: "¿Listo para empezar? Conéctanos directamente vía WhatsApp.",
-        target: "contact",
-    },
+    { target: "hero", title: "Bienvenido a EVORIX", content: "Donde la contabilidad convencional evoluciona a sistemas inteligentes. Comienza tu transformación aquí." },
+    { target: "problem", title: "El Problema", content: "La contabilidad tradicional es lenta y reactiva. Identificamos los cuellos de botella que frenan tu crecimiento." },
+    { target: "services", title: "Nuestras Soluciones", content: "Desde automatización fiscal hasta estrategia financiera. Servicios diseñados para la era digital." },
+    { target: "tools", title: "Tecnología Propia", content: "Conoce Evosys y nuestras herramientas exclusivas. Potencia real bajo tu control." },
+    { target: "testimonials", title: "Casos de Éxito", content: "Empresas que ya han evolucionado con nosotros. Resultados reales y medibles." },
+    { target: "contact", title: "Contacta", content: "¿Listo para dar el siguiente paso? Hablemos de cómo integrar EVORIX en tu negocio." }
 ];
 
-interface TourContextType {
+interface TourContextProps {
+    isTourActive: boolean;
     currentStepIndex: number;
     steps: TourStep[];
-    isTourActive: boolean;
     startTour: () => void;
     endTour: () => void;
     nextStep: () => void;
     prevStep: () => void;
 }
 
-const TourContext = createContext<TourContextType | undefined>(undefined);
+const TourContext = createContext<TourContextProps | undefined>(undefined);
 
 export const TourProvider = ({ children }: { children: ReactNode }) => {
-    const [currentStepIndex, setCurrentStepIndex] = useState(-1);
     const [isTourActive, setIsTourActive] = useState(false);
+    const [currentStepIndex, setCurrentStepIndex] = useState(-1);
 
-    // IMPORTANT: must always hard-reset to step 0 so the button "always works"
-    const startTour = React.useCallback(() => {
+    const startTour = () => {
         setIsTourActive(true);
         setCurrentStepIndex(0);
-        // Overflow is handled by TourOverlay
-    }, []);
+        // Initial scroll happens in Overlay effect
+    };
 
-    const endTour = React.useCallback(() => {
+    const endTour = () => {
         setIsTourActive(false);
         setCurrentStepIndex(-1);
-        sessionStorage.setItem("evorix-tour-completed", "true");
-    }, []);
+        document.body.style.overflow = ""; // Safety reset
+    };
 
-    const nextStep = React.useCallback(() => {
-        setCurrentStepIndex((prev) => {
-            if (prev < TOUR_STEPS.length - 1) return prev + 1;
+    const nextStep = () => {
+        if (currentStepIndex < TOUR_STEPS.length - 1) {
+            setCurrentStepIndex(prev => prev + 1);
+        } else {
             endTour();
-            return -1;
-        });
-    }, [endTour]);
-
-    const prevStep = React.useCallback(() => {
-        setCurrentStepIndex((prev) => (prev > 0 ? prev - 1 : prev));
-    }, []);
-
-    useEffect(() => {
-        if (!isTourActive || currentStepIndex < 0) return;
-
-        const step = TOUR_STEPS[currentStepIndex];
-
-        // ✅ Match TourOverlay logic:
-        // - If target looks like CSS selector (. # [) use it directly
-        // - Otherwise assume [data-tour="..."]
-        const selector = /^([.#[])/.test(step.target)
-            ? step.target
-            : `[data-tour="${step.target}"]`;
-
-        const element = document.querySelector(selector);
-
-        if (element) {
-            element.scrollIntoView({
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-                    ? "auto"
-                    : "smooth",
-                block: "center",
-            });
         }
-    }, [currentStepIndex, isTourActive]);
+    };
 
-    const value = React.useMemo(
-        () => ({
-            currentStepIndex,
-            steps: TOUR_STEPS,
-            isTourActive,
-            startTour,
-            endTour,
-            nextStep,
-            prevStep,
-        }),
-        [currentStepIndex, isTourActive, startTour, endTour, nextStep, prevStep]
-    );
+    const prevStep = () => {
+        if (currentStepIndex > 0) {
+            setCurrentStepIndex(prev => prev - 1);
+        }
+    };
+
+    const value = useMemo(() => ({
+        isTourActive,
+        currentStepIndex,
+        steps: TOUR_STEPS,
+        startTour,
+        endTour,
+        nextStep,
+        prevStep
+    }), [isTourActive, currentStepIndex]);
 
     return <TourContext.Provider value={value}>{children}</TourContext.Provider>;
 };
 
 export const useTour = () => {
     const context = useContext(TourContext);
-    if (context === undefined) {
-        throw new Error("useTour must be used within a TourProvider");
-    }
+    if (!context) throw new Error("useTour must be used within a TourProvider");
     return context;
 };
